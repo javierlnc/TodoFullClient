@@ -14,8 +14,9 @@ export class TareasComponent implements OnInit {
   }
   ngOnInit(): void {
     this.tareaService.getAll()
-      .subscribe(tareas => {
-        console.log('tareas', tareas)
+      .subscribe((tareas: any) => {
+        this.tareas = tareas._embedded.tasks;
+        console.log('tareas', this.tareas);
       })
   }
 }
