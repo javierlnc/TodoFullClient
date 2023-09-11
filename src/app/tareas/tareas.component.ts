@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TareasService } from '../tareas.service';
+import { Tarea } from './tarea.model';
 
 @Component({
-  selector: 'app-tareas',
+  selector: 'tareas',
   templateUrl: './tareas.component.html',
   styleUrls: ['./tareas.component.css']
 })
-export class TareasComponent {
+export class TareasComponent implements OnInit {
+  tareas: Tarea[] = [];
+  constructor(private tareaService: TareasService) {
 
+  }
+  ngOnInit(): void {
+    this.tareaService.getAll()
+      .subscribe(tareas => {
+        console.log('tareas', tareas)
+      })
+  }
 }
